@@ -1,0 +1,76 @@
+body
+{
+	font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,Arial,sans-serif;
+}
+
+ul.twitterSearchResults {
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+
+
+ul.twitterLeaderboard {
+	list-style: none;
+	padding-left: 0px;
+}
+
+li.tweet {
+	list-style: none;
+	margin-left: 0;
+	border:1px solid #21759B; 
+	margin: 5px; padding: 5px;
+	
+	zoom: 1;
+}
+
+li.leader {
+	list-style: none;
+}
+
+li.leaderTotals {
+	list-style: none;
+	color: #999;
+	font-size: smaller;
+}
+
+a {
+	color: #21759B;
+}
+
+span.hashtag {
+	color: #21759B;
+}
+
+span.avatar {
+	display: block;
+	height: 50px;
+	width: 50px;
+	margin: 0px 10px 0px 5px;
+}
+
+span.avatar img {
+	border: 0;
+}
+
+span.tweetBody {
+	display: block;
+	margin-left: 65px;
+	min-height: 50px;
+	
+	margin-top: -50px;
+}
+
+span.tweetTime {
+	color: #505050;
+	font-size: smaller;
+}
+
+#leaderboard_contain {width:25%;}
+li.tweet {*height:60px;}
+
+.tsControls {
+	border: 1px solid #21759B;
+}
+

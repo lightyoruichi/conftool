@@ -1,0 +1,13 @@
+Twitterslurp 1.0.1: 2009-09-22 (r81)
+* Store tweetIDs as bigints, and use bcmath for the one place in the code doing a tweet ID comparison to avoid the 2^32 twitpocalypse.
+* Link to the Twitterslurp googlecode project on the web pages
+* Add DB_PREFIX configuration to allow specifying a table name prefix
+
+If you need to update an existing database, run the following sql queries:
+alter table tweetSearchMatches change tweetID tweetID bigint unsigned NOT NULL;
+alter table tweets change tweetID tweetID bigint unsigned NOT NULL;
+alter table twitterSearches change lastTweetID lastTweetID bigint unsigned NOT NULL;
+
+
+Twitterslurp 1.0: 2009-06-30 (r74)
+* Initial release

@@ -46,7 +46,7 @@ var ts = new TwitterSlurp(function(self){
 		
 		var out = '<li class="tweet" id="tweet_' + tweet.tweetID + '"><span class="avatar"><a href="' + url + '"><img src="' + tweet.profileImage + '" height="48" width="48" /></a></span>';
 		
-		out += '<span class="tweetBody"><span><b><a href="http://twitter.com/' + tweet.fromUser + '">' + tweet.fromUser + '</a></b></span> <span class="tweetmsg">' + tweet.tweet + '</span><br /><span class="tweetTime">' + tweet.tweetStrDate + '</span><span style="font-size: 11px;"> <a href="http://twitter.com/home?status=@' + tweet.fromUser + '%20%20' + encodeURIComponent(self.replyHashtag) + '&in_reply_to_status_id=' + tweet.tweetID + '&in_reply_to=' + tweet.fromUser + '" target="_new">(Reply)</a></span> <span style="font-size: 11px;">' + self.makeRTLink(tweet) + '(RT)</a></span></span></span></li>';
+		out += '<span class="tweetBody"><span><b><a href="http://twitter.com/' + tweet.fromUser + '">' + tweet.fromUser + '</a></b></span> <span class="tweetmsg">' + tweet.tweet + '</span><br /><span class="tweetTime">' + tweet.tweetStrDate + '</span><span style="font-size: 11px;"> <a href="http://twitter.com/home?status=@' + tweet.fromUser + '%20%20' + encodeURIComponent(self.replyHashtag) + '&in_reply_to_status_id=' + tweet.tweetID + '&in_reply_to=' + tweet.fromUser + '" target="_new">(Reply)</a></span> <span style="font-size: 11px;">' + self.makeRTLink(tweet) + '(RT)</a></span></span></li>';
 		
 		return out;
 	}
@@ -91,4 +91,3 @@ var ts = new TwitterSlurp(function(self){
 
 
 $(function() { ts.start(); } );
-

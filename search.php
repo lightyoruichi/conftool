@@ -2,7 +2,7 @@
 /*
 	Twitterslurp: PHP Search Component
 	Author: John Bafford - http://bafford.com
-	Copyright 2009 The Bivings Group
+	Copyright 2009 - 2010 The Bivings Group
 	http://www.bivings.com
 	
 	Permission is hereby granted, free of charge, to any person
@@ -40,7 +40,7 @@ function SetTimeZone()
 	$offset = $date->getOffset();
 	
 	$hours = abs($offset) / 3600;
-	$mim = abs($offset) % 60;
+	$min = abs($offset) % 60;
 	
 	$hours = str_pad($hours, 2, '0', STR_PAD_LEFT);
 	$min = str_pad($min, 2, '0', STR_PAD_LEFT);
@@ -83,7 +83,7 @@ function TSCacheSet($cacheID, $data)
 //---------------------------------------------
 
 function url_to_link($text) 
-{ 
+{
 	$text =
 	preg_replace('!(^|([^\'"]\s*))' .
 	'([hf][tps]{2,4}:\/\/[^\s<>"\'()]{4,})!mi',
@@ -202,12 +202,15 @@ function GetStats($searchFor)
 	if($searchFor->stats)
 		foreach($searchFor->stats as $type => $typeData)
 		{
+			$searchName = '';
 			$searchID = 0;
 			if(preg_match('/^([^_]*)(_(.*))?/', $type, $pm))
 			{
-				$searchName = $pm[3];
-				if($searchName)
+				if(isset($pm[3]))
+				{
+					$searchName = $pm[3];
 					$searchID = $sm[$searchName];
+				}
 			}
 			
 			$config = $statConfig[$type];
@@ -268,18 +271,20 @@ function GetLeaderboard($searchFor)
 				$searchID = 0;
 			
 			if($searchID)
-				$where = "INNER JOIN $tTSM tsm on tweets.tweetID = tsm.tweetID and tsm.searchID = $searchID";
+				$where = "INNER JOIN $tTSM TSM on T.tweetID = TSM.tweetID and TSM.searchID = $searchID";
+			else
+				$where = '';
 			
 			$lb = array(
 				'maxDisp' => $numDisp,
 				'users' => array(),
 			);
 			
-			$d = mysql_query("select fromUser, count, TU.profileImage from (select fromUser, count(*) count from $tTweets $where group by fromUser order by count desc $limit) TW left join $tTU TU on TW.fromUser=TU.username", $conn);
+			$d = mysql_query("select fromUser, count, TU.profileImage from (select fromUser, count(*) count from $tTweets T $where group by fromUser order by count desc $limit) TW left join $tTU TU on TW.fromUser=TU.username", $conn);
 			while($o = mysql_fetch_object($d))
 				$lb['users'][$o->fromUser] = $o;
 			
-			$d = mysql_query("select count(*) tweets, count(distinct fromUser) users from $tTweets $where", $conn);
+			$d = mysql_query("select count(*) tweets, count(distinct fromUser) users from $tTweets T $where", $conn);
 			$lb['total'] = mysql_fetch_object($d);
 			
 			$arr[$name] = $lb;

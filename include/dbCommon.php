@@ -71,4 +71,3 @@ function GetSearchData()
 	return $sd;
 }
 
-

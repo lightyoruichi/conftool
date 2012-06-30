@@ -48,4 +48,3 @@ var ts = new TwitterSlurp(function(self){
 
 
 $(function() { ts.start(); } );
-

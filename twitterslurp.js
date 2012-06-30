@@ -346,7 +346,7 @@ TwitterSlurp = function TwitterSlurp(init)
 		}
 		catch(err)
 		{
-			return self.addErrror(err, theQuery);
+			return self.addError(err, theQuery);
 		}
 		
 		if(response.error)
